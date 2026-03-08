@@ -4,10 +4,11 @@
 // then put the libfixmath source under "src/Fixmath"
 #include "libfixmath/fix16.hpp"
 //
-#include "app_description.hpp"
-#include <sdk/calc/calc.hpp>
-#include <sdk/os/lcd.hpp>
-#include <sdk/os/debug.hpp>
+#include "app_description.h"
+#include <sdk/calc/calc.h>
+#include <sdk/os/lcd.h>
+#include <sdk/os/debug.h>
+#include <sdk/os/input.h>
 
 #define SCREEN_X 320
 #define SCREEN_Y 528
@@ -23,11 +24,8 @@ void draw_center_square(int16_t cx, int16_t cy, int16_t sx, int16_t sy, uint16_t
     }
 }
 
-extern "C"
-void main()
+int main()
 {
-    calcInit(); //backup screen and init some variables
-
     // Constants such as PI or e are available
     Fix16 angle = -fix16_pi;
     Fix16 hue   = 0.0f;
@@ -36,10 +34,11 @@ void main()
         fillScreen(color(255, 255, 255));
 
         // ----- Check for exit -----
-        uint32_t k1,k2;
-        getKey(&k1,&k2);
-        if(testKey(k1,k2,KEY_CLEAR))
-            break;
+        Input_Event event __attribute__((aligned(4)));
+        if (GetInput(&event, 0, 0x10) >= 0) {
+            if (event.type == Input_Event::EventTypeKeyDown && event.data.scancode.key1 == KEYCODE_POWER_CLEAR)
+                break;
+        }
 
         // ------ Fix16 example ------
         // Supports math with float
@@ -69,5 +68,5 @@ void main()
         LCD_Refresh();
     }
 
-    calcEnd(); //restore screen and do stuff
+    return 0;
 }

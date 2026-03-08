@@ -2,6 +2,9 @@
 *.o
 *.hhk
 *.bin
+*.elf
+*.hh3
+*.map
 
 # some temporary files under wsl
 *~
@@ -10,3 +13,7 @@
 # vscode
 .vscode/*
 /build/*
+/dist/*
+/obj/*
+/.deps/*
+compile_commands.json
