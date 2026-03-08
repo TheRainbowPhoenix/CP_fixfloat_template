@@ -1,4 +1,4 @@
-#include <appdef.hpp>
+#include <appdef.h>
 /*
  * Fill this section in with some information about your app.
  * All fields are optional - so if you don't need one, take it out.
