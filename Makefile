@@ -1,4 +1,4 @@
-APP_NAME := App_Test
+APP_NAME := CPFixFloat
 
 ifndef SDK_DIR
 $(error You need to define the SDK_DIR environment variable, and point it to the sdk/ folder)
