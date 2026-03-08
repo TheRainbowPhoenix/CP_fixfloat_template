@@ -36,7 +36,7 @@ int main()
         // ----- Check for exit -----
         Input_Event event __attribute__((aligned(4)));
         if (GetInput(&event, 0, 0x10) >= 0) {
-            if (event.type == Input_Event::EventTypeKeyDown && event.data.scancode.key1 == KEYCODE_POWER_CLEAR)
+            if (event.type == EVENT_KEY && event.data.key.keyCode == KEYCODE_POWER_CLEAR)
                 break;
         }
 
